@@ -1,0 +1,130 @@
+game_rules: 'You are playing a 3D survival platform game. You control a third-person
+  character on a large tile platform that gradually falls apart. The goal is to survive
+  until the timer ends.
+
+
+  ## What you see on screen
+
+  - The platform is a grid of tiles, surrounded by sky / void.
+
+  - A countdown timer is shown at the top center of the screen.
+
+
+  ## Rules
+
+  - Tiles drop away over time, leaving gaps in the platform.
+
+  - Falling off the platform or into a missing tile ends the episode in failure.
+
+  - Score increases with survival time, and surviving the full timer gives the maximum
+  score.
+
+
+  ## Task Objective
+
+  Survive on the platform for as long as possible. Avoid falling off or into dropped
+  areas.'
+width: 640
+height: 360
+speed_multiplier: 1.0
+game_roles:
+- name: player
+  prompt:
+    role_section: 'You control the player character.
+
+      Survive on the platform for as long as possible. Avoid falling off or into dropped
+      areas.'
+    computer_use_controls_section: 'ACTION SPACE (ONLY LEGAL ACTIONS):
+
+      - Wait: Pause briefly to observe.
+
+      - w: Move forward
+
+      - a: Move left
+
+      - s: Move backward
+
+      - d: Move right
+
+      - Space: Jump / dodge
+
+      - ArrowLeft: Turn camera view left
+
+      - ArrowRight: Turn camera view right
+
+      - ArrowUp: Tilt camera view up
+
+      - ArrowDown: Tilt camera view down'
+  computer_use_controls:
+    allowed_keys:
+    - w
+    - a
+    - s
+    - d
+    - Space
+    - ArrowLeft
+    - ArrowRight
+    - ArrowUp
+    - ArrowDown
+    allow_clicks: true
+    hold_duration: 0.25
+  semantic_controls:
+  - id: wait
+    description: Wait briefly.
+    binding:
+      action: wait
+      duration: 0.15
+  - id: press_w
+    description: Move forward
+    binding:
+      action: press_key
+      key: w
+      duration: 0.25
+  - id: press_a
+    description: Move left
+    binding:
+      action: press_key
+      key: a
+      duration: 0.25
+  - id: press_s
+    description: Move backward
+    binding:
+      action: press_key
+      key: s
+      duration: 0.25
+  - id: press_d
+    description: Move right
+    binding:
+      action: press_key
+      key: d
+      duration: 0.25
+  - id: press_space
+    description: Jump / dodge
+    binding:
+      action: press_key
+      key: Space
+      duration: 0.25
+  - id: press_arrowleft
+    description: Turn camera view left
+    binding:
+      action: press_key
+      key: ArrowLeft
+      duration: 0.25
+  - id: press_arrowright
+    description: Turn camera view right
+    binding:
+      action: press_key
+      key: ArrowRight
+      duration: 0.25
+  - id: press_arrowup
+    description: Tilt camera view up
+    binding:
+      action: press_key
+      key: ArrowUp
+      duration: 0.25
+  - id: press_arrowdown
+    description: Tilt camera view down
+    binding:
+      action: press_key
+      key: ArrowDown
+      duration: 0.25

@@ -1,0 +1,139 @@
+game_rules: 'You are playing red-hot-vengeance-web-edition.
+
+
+  ## Game Description
+
+  Top-down tactical shooter. Navigate procedural levels, use cover, manage ammo, and
+  eliminate all enemies to progress.
+
+
+  ## Controls
+
+  - WASD: Move
+
+  - Arrow Keys: Shoot direction
+
+  - Space: Dash/Dodge roll
+
+  - Z: Swap weapon
+
+  - Shift: Walk slowly
+
+  - Enter: Start game
+
+  - Esc: Pause
+
+  - R: Restart'
+width: 800
+height: 600
+speed_multiplier: 1.0
+game_roles:
+- name: player
+  prompt:
+    role_section: 'You control the player in red-hot-vengeance-web-edition.
+
+      Top-down tactical shooter. Navigate procedural levels, use cover, manage ammo,
+      and eliminate all enemies to progress.'
+    computer_use_controls_section: 'ACTION SPACE (ONLY LEGAL ACTIONS):
+
+      - Wait: Do nothing briefly.
+
+      - w: Move up
+
+      - a: Move left
+
+      - s: Move down
+
+      - d: Move right
+
+      - ArrowUp: Shoot up
+
+      - ArrowDown: Shoot down
+
+      - ArrowLeft: Shoot left
+
+      - ArrowRight: Shoot right
+
+      - Space: Dash / Dodge
+
+      - z: Swap weapon'
+  computer_use_controls:
+    allowed_keys:
+    - w
+    - a
+    - s
+    - d
+    - ArrowUp
+    - ArrowDown
+    - ArrowLeft
+    - ArrowRight
+    - Space
+    - z
+    allow_clicks: false
+    hold_duration: 0.18
+  semantic_controls:
+  - id: wait
+    description: Wait briefly.
+    binding:
+      action: wait
+      duration: 0.15
+  - id: press_w
+    description: Move up
+    binding:
+      action: press_key
+      key: w
+      duration: 0.18
+  - id: press_a
+    description: Move left
+    binding:
+      action: press_key
+      key: a
+      duration: 0.18
+  - id: press_s
+    description: Move down
+    binding:
+      action: press_key
+      key: s
+      duration: 0.18
+  - id: press_d
+    description: Move right
+    binding:
+      action: press_key
+      key: d
+      duration: 0.18
+  - id: press_arrowup
+    description: Shoot up
+    binding:
+      action: press_key
+      key: ArrowUp
+      duration: 0.18
+  - id: press_arrowdown
+    description: Shoot down
+    binding:
+      action: press_key
+      key: ArrowDown
+      duration: 0.18
+  - id: press_arrowleft
+    description: Shoot left
+    binding:
+      action: press_key
+      key: ArrowLeft
+      duration: 0.18
+  - id: press_arrowright
+    description: Shoot right
+    binding:
+      action: press_key
+      key: ArrowRight
+      duration: 0.18
+  - id: press_space
+    description: Dash / Dodge
+    binding:
+      action: press_key
+      key: Space
+      duration: 0.18
+  - id: press_z
+    description: Swap weapon
+    binding:
+      action: press_key
+      key: z
+      duration: 0.18

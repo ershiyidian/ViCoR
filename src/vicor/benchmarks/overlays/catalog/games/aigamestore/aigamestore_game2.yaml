@@ -1,0 +1,97 @@
+game_rules: 'You are playing fling-feathers-blitz.
+
+
+  ## Game Description
+
+  Physics-based puzzle game. Launch birds from a slingshot to destroy structures and
+  eliminate pigs. Each bird type has unique abilities.
+
+
+  ## Controls
+
+  - Arrow Keys: Adjust aim
+
+  - Space: Launch bird
+
+  - Z: Activate special ability
+
+  - Enter: Start game
+
+  - R: Restart'
+width: 800
+height: 600
+speed_multiplier: 1.0
+game_roles:
+- name: player
+  prompt:
+    role_section: 'You control the player in fling-feathers-blitz.
+
+      Physics-based puzzle game. Launch birds from a slingshot to destroy structures
+      and eliminate pigs. Each bird type has unique abilities.'
+    computer_use_controls_section: 'ACTION SPACE (ONLY LEGAL ACTIONS):
+
+      - Wait: Do nothing briefly.
+
+      - ArrowUp: Aim higher
+
+      - ArrowDown: Aim lower
+
+      - ArrowLeft: Pull / Adjust left
+
+      - ArrowRight: Adjust right
+
+      - Space: Launch bird
+
+      - z: Activate special ability'
+  computer_use_controls:
+    allowed_keys:
+    - ArrowUp
+    - ArrowDown
+    - ArrowLeft
+    - ArrowRight
+    - Space
+    - z
+    allow_clicks: false
+    hold_duration: 0.18
+  semantic_controls:
+  - id: wait
+    description: Wait briefly.
+    binding:
+      action: wait
+      duration: 0.15
+  - id: press_arrowup
+    description: Aim higher
+    binding:
+      action: press_key
+      key: ArrowUp
+      duration: 0.18
+  - id: press_arrowdown
+    description: Aim lower
+    binding:
+      action: press_key
+      key: ArrowDown
+      duration: 0.18
+  - id: press_arrowleft
+    description: Pull / Adjust left
+    binding:
+      action: press_key
+      key: ArrowLeft
+      duration: 0.18
+  - id: press_arrowright
+    description: Adjust right
+    binding:
+      action: press_key
+      key: ArrowRight
+      duration: 0.18
+  - id: press_space
+    description: Launch bird
+    binding:
+      action: press_key
+      key: Space
+      duration: 0.18
+  - id: press_z
+    description: Activate special ability
+    binding:
+      action: press_key
+      key: z
+      duration: 0.18

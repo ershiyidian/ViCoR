@@ -1,0 +1,150 @@
+game_rules: 'You are playing a first-person arena shooter. Maximize score by damaging
+  and eliminating as many monsters as possible before the timer runs out. Act quickly
+  and keep shooting.
+
+
+  ## What you see on screen
+
+  - First-person view.
+
+  - A crosshair at screen centre marks where shots land.
+
+  - An HP indicator shows remaining health.
+
+  - Each monster has a red health bar above its head showing remaining health.
+
+  - A countdown timer shows time remaining.
+
+
+  ## Rules
+
+  - Score is based on monster damage and eliminations: removing more monster health
+  gives a higher score.
+
+  - Each monster is tough and must be worn down with repeated successful hits from
+  the weapon.
+
+  - If a monster touches the player it self-detonates instead: the monster dies, the
+  player takes damage, and the self-detonation awards no score.
+
+  - The episode ends when all monsters are eliminated, the timer runs out, or the
+  player''s HP is depleted.
+
+
+  ## Task Objective
+
+  Eliminate all 10 monsters in the arena before the countdown ends while keeping your
+  HP as high as possible.'
+width: 640
+height: 360
+speed_multiplier: 1.0
+game_roles:
+- name: player
+  prompt:
+    role_section: 'You control the player character.
+
+      Eliminate all 10 monsters in the arena before the countdown ends while keeping
+      your HP as high as possible.'
+    computer_use_controls_section: 'ACTION SPACE (ONLY LEGAL ACTIONS):
+
+      - Wait: Pause briefly to observe.
+
+      - w: Move forward
+
+      - a: Move left
+
+      - s: Move backward
+
+      - d: Move right
+
+      - Space: Jump
+
+      - x: Fire weapon (Fire / Left Mouse Button)
+
+      - ArrowLeft: Turn camera view left
+
+      - ArrowRight: Turn camera view right
+
+      - ArrowUp: Tilt camera view up
+
+      - ArrowDown: Tilt camera view down'
+  computer_use_controls:
+    allowed_keys:
+    - w
+    - a
+    - s
+    - d
+    - Space
+    - x
+    - ArrowLeft
+    - ArrowRight
+    - ArrowUp
+    - ArrowDown
+    allow_clicks: true
+    hold_duration: 0.25
+  semantic_controls:
+  - id: wait
+    description: Wait briefly.
+    binding:
+      action: wait
+      duration: 0.15
+  - id: press_w
+    description: Move forward
+    binding:
+      action: press_key
+      key: w
+      duration: 0.25
+  - id: press_a
+    description: Move left
+    binding:
+      action: press_key
+      key: a
+      duration: 0.25
+  - id: press_s
+    description: Move backward
+    binding:
+      action: press_key
+      key: s
+      duration: 0.25
+  - id: press_d
+    description: Move right
+    binding:
+      action: press_key
+      key: d
+      duration: 0.25
+  - id: press_space
+    description: Jump
+    binding:
+      action: press_key
+      key: Space
+      duration: 0.25
+  - id: press_x
+    description: Fire weapon (Fire / Left Mouse Button)
+    binding:
+      action: press_key
+      key: x
+      duration: 0.25
+  - id: press_arrowleft
+    description: Turn camera view left
+    binding:
+      action: press_key
+      key: ArrowLeft
+      duration: 0.25
+  - id: press_arrowright
+    description: Turn camera view right
+    binding:
+      action: press_key
+      key: ArrowRight
+      duration: 0.25
+  - id: press_arrowup
+    description: Tilt camera view up
+    binding:
+      action: press_key
+      key: ArrowUp
+      duration: 0.25
+  - id: press_arrowdown
+    description: Tilt camera view down
+    binding:
+      action: press_key
+      key: ArrowDown
+      duration: 0.25

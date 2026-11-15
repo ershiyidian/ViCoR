@@ -1,0 +1,11 @@
+task_prompt: Complete all 10 on-screen tasks before the countdown ends. Read the current
+  task in the top-left corner of the screen, find the matching object, and use the
+  interaction button only when the yellow [Interact] prompt for that object is visible.
+evaluator_config:
+  objective:
+    reach:
+      game_state.score: 1.0
+  metrics_fields:
+  - game_state.score
+  - game_state.max_score_seen
+  - game_state.survival_time

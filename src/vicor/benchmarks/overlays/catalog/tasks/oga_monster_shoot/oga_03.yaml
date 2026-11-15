@@ -1,0 +1,10 @@
+task_prompt: Eliminate all 10 monsters in the arena before the countdown ends while
+  keeping your HP as high as possible.
+evaluator_config:
+  objective:
+    reach:
+      game_state.score: 1.0
+  metrics_fields:
+  - game_state.score
+  - game_state.max_score_seen
+  - game_state.survival_time

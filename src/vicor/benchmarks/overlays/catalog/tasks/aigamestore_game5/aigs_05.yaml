@@ -1,0 +1,10 @@
+task_prompt: 'Play cheese-chase-mouse-escape and achieve the highest score possible
+  (human median benchmark: 7925.0).'
+evaluator_config:
+  objective:
+    reach:
+      game_state.score: 7925.0
+  metrics_fields:
+  - game_state.score
+  - game_state.raw_score
+  - game_state.level

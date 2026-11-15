@@ -1,0 +1,110 @@
+game_rules: 'You are playing ao-oni-the-mansions-shadow.
+
+
+  ## Game Description
+
+  Escape a haunted mansion while evading a terrifying monster. Navigate 6 levels,
+  find keys, solve puzzles, and hide to survive.
+
+
+  ## Controls
+
+  - Arrow Keys: Move
+
+  - Shift: Toggle sprint
+
+  - Space: Interact with doors, items, hiding spots
+
+  - Z: Toggle flashlight
+
+  - Enter: Start game
+
+  - Esc: Pause
+
+  - R: Restart'
+width: 800
+height: 600
+speed_multiplier: 1.0
+game_roles:
+- name: player
+  prompt:
+    role_section: 'You control the player in ao-oni-the-mansions-shadow.
+
+      Escape a haunted mansion while evading a terrifying monster. Navigate 6 levels,
+      find keys, solve puzzles, and hide to survive.'
+    computer_use_controls_section: 'ACTION SPACE (ONLY LEGAL ACTIONS):
+
+      - Wait: Do nothing briefly.
+
+      - ArrowUp: Move up
+
+      - ArrowDown: Move down
+
+      - ArrowLeft: Move left
+
+      - ArrowRight: Move right
+
+      - Space: Interact with doors / items / hiding spots
+
+      - Shift: Toggle sprint
+
+      - z: Toggle flashlight'
+  computer_use_controls:
+    allowed_keys:
+    - ArrowUp
+    - ArrowDown
+    - ArrowLeft
+    - ArrowRight
+    - Space
+    - Shift
+    - z
+    allow_clicks: false
+    hold_duration: 0.18
+  semantic_controls:
+  - id: wait
+    description: Wait briefly.
+    binding:
+      action: wait
+      duration: 0.15
+  - id: press_arrowup
+    description: Move up
+    binding:
+      action: press_key
+      key: ArrowUp
+      duration: 0.18
+  - id: press_arrowdown
+    description: Move down
+    binding:
+      action: press_key
+      key: ArrowDown
+      duration: 0.18
+  - id: press_arrowleft
+    description: Move left
+    binding:
+      action: press_key
+      key: ArrowLeft
+      duration: 0.18
+  - id: press_arrowright
+    description: Move right
+    binding:
+      action: press_key
+      key: ArrowRight
+      duration: 0.18
+  - id: press_space
+    description: Interact with doors / items / hiding spots
+    binding:
+      action: press_key
+      key: Space
+      duration: 0.18
+  - id: press_shift
+    description: Toggle sprint
+    binding:
+      action: press_key
+      key: Shift
+      duration: 0.18
+  - id: press_z
+    description: Toggle flashlight
+    binding:
+      action: press_key
+      key: z
+      duration: 0.18

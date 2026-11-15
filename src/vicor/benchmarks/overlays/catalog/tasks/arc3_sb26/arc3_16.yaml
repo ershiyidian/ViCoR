@@ -1,0 +1,14 @@
+task_prompt: Complete all 8 levels of ARC-AGI-3 game 'sb26' with as few actions as
+  possible. Infer object roles, transition mechanics, and goal conditions from the
+  visual observations.
+evaluator_config:
+  objective:
+    reach:
+      game_state.score: 8.0
+  metrics_fields:
+  - game_state.score
+  - game_state.levels_completed
+  - game_state.win_levels
+  - game_state.rhae_score
+  - game_state.actions_taken
+  - game_state.resets

@@ -1,0 +1,10 @@
+task_prompt: Run through the 3D obstacle course as fast as possible. Avoid obstacles,
+  jump over gaps, and reach the finish line.
+evaluator_config:
+  objective:
+    reach:
+      game_state.score: 1.0
+  metrics_fields:
+  - game_state.score
+  - game_state.max_score_seen
+  - game_state.survival_time

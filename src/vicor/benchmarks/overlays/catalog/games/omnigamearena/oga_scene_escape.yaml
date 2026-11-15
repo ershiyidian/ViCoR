@@ -1,0 +1,131 @@
+game_rules: "You are playing an object interaction task-chain game. You control a\
+  \ character in an indoor environment with interactable objects. The objective is\
+  \ to complete the task chain within the countdown.\n\n## What you see on screen\n\
+  - Character camera view.\n- Top-left: status text.\n  - \"Finished Tasks\" shows\
+  \ task-chain progress.\n  - \"Current Task\" shows the active task text.\n- Top-right:\
+  \ countdown timer.\n- Interactable objects are placed in the environment.\n\n##\
+  \ Rules\n- The current on-screen task determines the active object.\n- Completing\
+  \ a valid object interaction advances the chain.\n- Object interaction is available\
+  \ while the yellow [Interact] prompt is visible near an object. The prompt disappears\
+  \ outside interaction range.\n- The episode ends when the task chain is completed\
+  \ or the countdown ends.\n\n## Task Objective\nComplete all 10 on-screen tasks before\
+  \ the countdown ends. Read the current task in the top-left corner of the screen,\
+  \ find the matching object, and use the interaction button only when the yellow\
+  \ [Interact] prompt for that object is visible."
+width: 640
+height: 360
+speed_multiplier: 1.0
+game_roles:
+- name: player
+  prompt:
+    role_section: 'You control the player character.
+
+      Complete all 10 on-screen tasks before the countdown ends. Read the current
+      task in the top-left corner of the screen, find the matching object, and use
+      the interaction button only when the yellow [Interact] prompt for that object
+      is visible.'
+    computer_use_controls_section: 'ACTION SPACE (ONLY LEGAL ACTIONS):
+
+      - Wait: Pause briefly to observe.
+
+      - w: Move forward
+
+      - a: Move left
+
+      - s: Move backward
+
+      - d: Move right
+
+      - f: Interact with the highlighted task object when the yellow [Interact] prompt
+      is visible
+
+      - Space: Jump
+
+      - ArrowLeft: Turn camera view left
+
+      - ArrowRight: Turn camera view right
+
+      - ArrowUp: Tilt camera view up
+
+      - ArrowDown: Tilt camera view down'
+  computer_use_controls:
+    allowed_keys:
+    - w
+    - a
+    - s
+    - d
+    - f
+    - Space
+    - ArrowLeft
+    - ArrowRight
+    - ArrowUp
+    - ArrowDown
+    allow_clicks: true
+    hold_duration: 0.25
+  semantic_controls:
+  - id: wait
+    description: Wait briefly.
+    binding:
+      action: wait
+      duration: 0.15
+  - id: press_w
+    description: Move forward
+    binding:
+      action: press_key
+      key: w
+      duration: 0.25
+  - id: press_a
+    description: Move left
+    binding:
+      action: press_key
+      key: a
+      duration: 0.25
+  - id: press_s
+    description: Move backward
+    binding:
+      action: press_key
+      key: s
+      duration: 0.25
+  - id: press_d
+    description: Move right
+    binding:
+      action: press_key
+      key: d
+      duration: 0.25
+  - id: press_f
+    description: Interact with the highlighted task object when the yellow [Interact]
+      prompt is visible
+    binding:
+      action: press_key
+      key: f
+      duration: 0.25
+  - id: press_space
+    description: Jump
+    binding:
+      action: press_key
+      key: Space
+      duration: 0.25
+  - id: press_arrowleft
+    description: Turn camera view left
+    binding:
+      action: press_key
+      key: ArrowLeft
+      duration: 0.25
+  - id: press_arrowright
+    description: Turn camera view right
+    binding:
+      action: press_key
+      key: ArrowRight
+      duration: 0.25
+  - id: press_arrowup
+    description: Tilt camera view up
+    binding:
+      action: press_key
+      key: ArrowUp
+      duration: 0.25
+  - id: press_arrowdown
+    description: Tilt camera view down
+    binding:
+      action: press_key
+      key: ArrowDown
+      duration: 0.25

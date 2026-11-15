@@ -1,0 +1,88 @@
+game_rules: 'You are playing shadow-boy.
+
+
+  ## Game Description
+
+  Guide a boy through a dark, puzzle-filled world. Overcome traps and platforming
+  challenges to reach the final checkpoint.
+
+
+  ## Controls
+
+  - Arrow Left/Right: Move
+
+  - Arrow Up/Space: Jump
+
+  - Z: Interact with objects
+
+  - Enter: Start game
+
+  - R: Restart'
+width: 800
+height: 600
+speed_multiplier: 1.0
+game_roles:
+- name: player
+  prompt:
+    role_section: 'You control the player in shadow-boy.
+
+      Guide a boy through a dark, puzzle-filled world. Overcome traps and platforming
+      challenges to reach the final checkpoint.'
+    computer_use_controls_section: 'ACTION SPACE (ONLY LEGAL ACTIONS):
+
+      - Wait: Do nothing briefly.
+
+      - ArrowLeft: Move left
+
+      - ArrowRight: Move right
+
+      - ArrowUp: Jump
+
+      - Space: Jump
+
+      - z: Interact with objects'
+  computer_use_controls:
+    allowed_keys:
+    - ArrowLeft
+    - ArrowRight
+    - ArrowUp
+    - Space
+    - z
+    allow_clicks: false
+    hold_duration: 0.18
+  semantic_controls:
+  - id: wait
+    description: Wait briefly.
+    binding:
+      action: wait
+      duration: 0.15
+  - id: press_arrowleft
+    description: Move left
+    binding:
+      action: press_key
+      key: ArrowLeft
+      duration: 0.18
+  - id: press_arrowright
+    description: Move right
+    binding:
+      action: press_key
+      key: ArrowRight
+      duration: 0.18
+  - id: press_arrowup
+    description: Jump
+    binding:
+      action: press_key
+      key: ArrowUp
+      duration: 0.18
+  - id: press_space
+    description: Jump
+    binding:
+      action: press_key
+      key: Space
+      duration: 0.18
+  - id: press_z
+    description: Interact with objects
+    binding:
+      action: press_key
+      key: z
+      duration: 0.18

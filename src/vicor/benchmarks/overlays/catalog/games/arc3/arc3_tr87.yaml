@@ -1,0 +1,85 @@
+game_rules: 'You are playing ARC-AGI-3 interactive visual reasoning game ''tr87''
+  on a 64x64 grid (rendered at 512x512 pixels, 8x8 pixels per grid cell, total 6 levels).
+
+
+  ## Rules
+
+  - The game rules and level objectives are not provided explicitly; infer object
+  roles, transition rules, and goals from visual changes after your actions.
+
+  - This is a strictly TURN-BASED grid game: each `act` call (1 key press or 1 click)
+  executes exactly 1 discrete step regardless of `duration` (do not vary `duration`;
+  call `act` repeatedly to move multiple steps).
+
+  - Each level shares core mechanics while introducing new layouts or constraints.
+
+  - Completing a level immediately advances to the next level.
+
+  - If an attempt gets stuck or reaches a dead end, press ''r'' to reset the current
+  level without losing previously completed levels.
+
+
+  ## Task Objective
+
+  Complete all 6 levels with as few game actions as possible.'
+width: 512
+height: 512
+speed_multiplier: 1.0
+game_roles:
+- name: player
+  prompt:
+    role_section: You control the player in ARC-AGI-3 game 'tr87'. Complete all 6
+      levels with as few actions as possible by inferring the rules from visual feedback.
+    computer_use_controls_section: 'ACTION SPACE (ONLY LEGAL ACTIONS):
+
+      - Wait: Observe without acting.
+
+      - ArrowUp: Action 1 (Up / North)
+
+      - ArrowDown: Action 2 (Down / South)
+
+      - ArrowLeft: Action 3 (Left / West)
+
+      - ArrowRight: Action 4 (Right / East)
+
+      - r: Reset current level attempt'
+  computer_use_controls:
+    allowed_keys:
+    - ArrowUp
+    - ArrowDown
+    - ArrowLeft
+    - ArrowRight
+    - r
+    allow_clicks: false
+    hold_duration: 0.05
+  semantic_controls:
+  - id: wait
+    description: Wait briefly.
+    binding:
+      action: wait
+      duration: 0.05
+  - id: press_arrowup
+    description: Action 1 (Up / North)
+    binding:
+      action: press_key
+      key: ArrowUp
+  - id: press_arrowdown
+    description: Action 2 (Down / South)
+    binding:
+      action: press_key
+      key: ArrowDown
+  - id: press_arrowleft
+    description: Action 3 (Left / West)
+    binding:
+      action: press_key
+      key: ArrowLeft
+  - id: press_arrowright
+    description: Action 4 (Right / East)
+    binding:
+      action: press_key
+      key: ArrowRight
+  - id: press_r
+    description: Reset current level attempt
+    binding:
+      action: press_key
+      key: r

@@ -1,0 +1,297 @@
+game_rules: "You are operating a dual-arm tabletop robot via a 6-DoF Virtual Gamepad\
+  \ in real-time RoboDojo simulation task 'play_Xylophone'.\nThe simulation physics\
+  \ runs continuously in real time while you think and act.\n\n## Screen Layout &\
+  \ Proprioceptive HUD (640x720 pixel canvas: x=0..639, y=0..719; note HUD X/Y/Z numbers\
+  \ are physical cm, whereas image regions/anchors use 640x720 screen pixels)\n- Top\
+  \ banner (`GOAL:`): Active episode instruction.\n- Upper view (`HEAD CAM`, y=40..459):\
+  \ Overhead-front RGB camera (+Y=forward/deeper, -X=left, +X=right) with a calibrated\
+  \ cm border ruler (`X0` centerline: `X<0` left, `X>0` right; `Y` depth in cm on\
+  \ the `Z=0` surface — read `X/Y` at an object's bottom contact base on `Z=0`, not\
+  \ its elevated top).\n  * Cross `+` = 3D fingertip pinch center (`TCP`).\n  * Cyan\
+  \ (`L`) / Orange (`R`) ring `o` = vertical plumb projection on the `Z=0` tabletop\
+  \ plane directly below `+` (turns green when holding an object).\n- Bottom-left\
+  \ (`L`, cyan) & Bottom-right (`R`, orange): Eye-in-hand wrist cameras with `PINCH\
+  \ +` jaw-span reticle (marks the exact 3D pinch point between the finger pads —\
+  \ center the target on `PINCH +` in the wrist cam before closing!), edge direction\
+  \ labels (`^W`/`^Up` = Top/+Y Forward, `vS`/`vDn` = Bottom/-Y Backward, `<A`/`<Lt`\
+  \ = Left/-X, `D>`/`Rt>` = Right/+X), live gripper jaw encoder (`OPEN` / `HELD(XXmm)`\
+  \ / `EMPTY!(0mm)`), 3D fingertip coordinates `X, Y, Z` in cm (`Z=0` is the table/belt\
+  \ contact surface itself — thin/flat objects sit at `Z=+1..+2cm`, so closing at\
+  \ `Z>=4cm` closes in air above them), wrist `Yaw` in deg (default bimanual `TOPDOWN`\
+  \ sets Left `Yaw:-90` [facing +X] & Right `Yaw:+90` [facing -X], placing solid fingers\
+  \ at Front `+Y` & Back `-Y` [open Left-Right along `X`]; ~1.0s `z`/`c` or `n`/`m`\
+  \ rotates to `Yaw:0` [open Front-Back along `Y`]), and `px:(x,y)` live screen pixel\
+  \ coordinates of that arm's tabletop ring `o` in `HEAD CAM` (on the 640x720 canvas).\n\
+  - Bottom status bar (`PAD:`): Last gamepad input, measured displacement (`dX, dY,\
+  \ dZ` in cm), and stance (`TOPDOWN` / `ORIGIN`).\n\n## Controls Overview\n- Follow\
+  \ the `GOAL:` banner instruction at the top of the screen.\n- Use Left arm (`w/a/s/d/q/e/z/c/F1/F2`)\
+  \ for left/center workspace and Right arm (`Arrows/i/k/n/m/F3/F4`) for right/center\
+  \ workspace (before grasping at contact level, lower to `Z=+1..+2cm` and align `Yaw`\
+  \ so solid fingers do not block approach; after `HELD`, lift `q`/`i` >=0.8s for\
+  \ >10cm clearance).\n- Hold duration controls movement distance linearly (`18 cm/s`\
+  \ horizontal, `15 cm/s` vertical). Use longer holds (`0.5-0.9s`) for coarse travel/lifting\
+  \ and short taps (`0.06-0.12s`) for fine alignment.\n- Press `h` after completing\
+  \ the objective if the task requires returning the arms to their origin home pose."
+width: 640
+height: 720
+speed_multiplier: 1.0
+game_roles:
+- name: player
+  prompt:
+    role_section: You control the dual-arm robot via a 6-DoF Virtual Gamepad in RoboDojo
+      task 'play_Xylophone'. Read the `GOAL:` banner and use the `HEAD CAM` view,
+      calibrated tabletop grid, and `L`/`R` wrist cameras to complete the objective.
+    computer_use_controls_section: "ACTION SPACE (VIRTUAL 6-DOF DUAL-ARM GAMEPAD —\
+      \ ONLY LEGAL KEYS):\n- Continuous motion keys scale linearly with hold `duration`\
+      \ (`V_XY = 18 cm/s`, `V_Z = 15 cm/s`):\n  * Short tap (`duration`: 0.06 to 0.12):\
+      \ fine ~1.1-2.1 cm nudge or ~7-10 deg rotation.\n  * Medium press (`duration`:\
+      \ 0.22 to 0.35): ~4.0-6.3 cm translation or ~3.3-5.2 cm vertical move.\n  *\
+      \ Long hold (`duration`: 0.60 to 0.90): ~11-16 cm traverse or ~9-13.5 cm vertical\
+      \ lift/descent.\n- Discrete gripper/macro keys (`F1`, `F2`, `F3`, `F4`, `Space`,\
+      \ `Enter`, `v`, `h`, `x`) trigger immediately once per press (`duration`: 0.1).\n\
+      \nLEFT ARM (cyan ring `o`, left side of workspace):\n- w / s: Move Left fingertip\
+      \ Forward (+Y, deeper) / Backward (-Y, closer)\n- a / d: Move Left fingertip\
+      \ Left (-X) / Right (+X)\n- q / e: Move Left fingertip Up (+Z, lift) / Down\
+      \ (-Z, lower)\n- z / c: Yaw Left wrist CCW / CW around fingertip TCP (default\
+      \ TOPDOWN sets Left Yaw:-90 [facing +X] & Right Yaw:+90 [facing -X] with solid\
+      \ fingers at Front +Y & Back -Y [open Left-Right along X]; ~1.0s yaw rotates\
+      \ ~90 deg to Yaw:0 [open Front-Back along Y])\n- t / g: Pitch Left wrist steeper\
+      \ Down / flatter Up around fingertip TCP\n- r / f: Roll Left wrist CCW / CW\
+      \ around finger axis\n- F1 / F2: Close / Open Left gripper (idempotent — safe\
+      \ against repeated triggers)\n- Space: Toggle Left gripper OPEN <-> CLOSED\n\
+      \nRIGHT ARM (orange ring `o`, right side of workspace):\n- ArrowUp / ArrowDown:\
+      \ Move Right fingertip Forward (+Y) / Backward (-Y)\n- ArrowLeft / ArrowRight:\
+      \ Move Right fingertip Left (-X) / Right (+X)\n- i / k: Move Right fingertip\
+      \ Up (+Z, lift) / Down (-Z, lower)\n- n / m: Yaw Right wrist CCW / CW around\
+      \ fingertip TCP (default TOPDOWN sets Left Yaw:-90 [facing +X] & Right Yaw:+90\
+      \ [facing -X] with solid fingers at Front +Y & Back -Y [open Left-Right along\
+      \ X]; ~1.0s yaw rotates ~90 deg to Yaw:0 [open Front-Back along Y])\n- y / b:\
+      \ Pitch Right wrist steeper Down / flatter Up around fingertip TCP\n- u / j:\
+      \ Roll Right wrist CCW / CW around finger axis\n- F3 / F4: Close / Open Right\
+      \ gripper (idempotent — safe against repeated triggers) - Enter: Toggle Right\
+      \ gripper OPEN <-> CLOSED\n\nSYSTEM MACRO BUTTONS:\n- v: Reset both wrists to\
+      \ Top-Down Ready Stance at safe hover height.\n- h: Safe Origin Return — automatically\
+      \ lifts straight up first to clear stacked objects, then returns both arms to\
+      \ exact calibration origin. Press `h` after finishing the task!\n- x: Step 1\
+      \ physics tick holding current poses."
+  computer_use_controls:
+    allowed_keys:
+    - w
+    - a
+    - s
+    - d
+    - q
+    - e
+    - z
+    - c
+    - t
+    - g
+    - r
+    - f
+    - '1'
+    - '2'
+    - Space
+    - ArrowUp
+    - ArrowDown
+    - ArrowLeft
+    - ArrowRight
+    - i
+    - k
+    - n
+    - m
+    - y
+    - b
+    - u
+    - j
+    - '3'
+    - '4'
+    - Enter
+    - v
+    - h
+    - x
+    - F1
+    - F2
+    - F3
+    - F4
+    allow_clicks: false
+    hold_duration: 0.08
+  semantic_controls:
+  - id: wait
+    description: Wait briefly.
+    binding:
+      action: wait
+      duration: 0.1
+  - id: left_fwd
+    description: Move Left TCP forward (+Y)
+    binding:
+      action: press_key
+      key: w
+      duration: 0.08
+  - id: left_back
+    description: Move Left TCP backward (-Y)
+    binding:
+      action: press_key
+      key: s
+      duration: 0.08
+  - id: left_left
+    description: Move Left TCP left (-X)
+    binding:
+      action: press_key
+      key: a
+      duration: 0.08
+  - id: left_right
+    description: Move Left TCP right (+X)
+    binding:
+      action: press_key
+      key: d
+      duration: 0.08
+  - id: left_up
+    description: Move Left TCP up (+Z)
+    binding:
+      action: press_key
+      key: q
+      duration: 0.08
+  - id: left_down
+    description: Move Left TCP down (-Z)
+    binding:
+      action: press_key
+      key: e
+      duration: 0.08
+  - id: left_yaw_ccw
+    description: Yaw Left wrist CCW
+    binding:
+      action: press_key
+      key: z
+      duration: 0.08
+  - id: left_yaw_cw
+    description: Yaw Left wrist CW
+    binding:
+      action: press_key
+      key: c
+      duration: 0.08
+  - id: left_pitch_down
+    description: Pitch Left wrist steeper down
+    binding:
+      action: press_key
+      key: t
+      duration: 0.08
+  - id: left_pitch_up
+    description: Pitch Left wrist flatter up
+    binding:
+      action: press_key
+      key: g
+      duration: 0.08
+  - id: left_grip
+    description: Toggle Left gripper open/closed
+    binding:
+      action: press_key
+      key: Space
+      duration: 0.1
+  - id: right_fwd
+    description: Move Right TCP forward (+Y)
+    binding:
+      action: press_key
+      key: ArrowUp
+      duration: 0.08
+  - id: right_back
+    description: Move Right TCP backward (-Y)
+    binding:
+      action: press_key
+      key: ArrowDown
+      duration: 0.08
+  - id: right_left
+    description: Move Right TCP left (-X)
+    binding:
+      action: press_key
+      key: ArrowLeft
+      duration: 0.08
+  - id: right_right
+    description: Move Right TCP right (+X)
+    binding:
+      action: press_key
+      key: ArrowRight
+      duration: 0.08
+  - id: right_up
+    description: Move Right TCP up (+Z)
+    binding:
+      action: press_key
+      key: i
+      duration: 0.08
+  - id: right_down
+    description: Move Right TCP down (-Z)
+    binding:
+      action: press_key
+      key: k
+      duration: 0.08
+  - id: right_yaw_ccw
+    description: Yaw Right wrist CCW
+    binding:
+      action: press_key
+      key: n
+      duration: 0.08
+  - id: right_yaw_cw
+    description: Yaw Right wrist CW
+    binding:
+      action: press_key
+      key: m
+      duration: 0.08
+  - id: right_pitch_down
+    description: Pitch Right wrist steeper down
+    binding:
+      action: press_key
+      key: y
+      duration: 0.08
+  - id: right_pitch_up
+    description: Pitch Right wrist flatter up
+    binding:
+      action: press_key
+      key: b
+      duration: 0.08
+  - id: right_grip
+    description: Toggle Right gripper open/closed
+    binding:
+      action: press_key
+      key: Enter
+      duration: 0.1
+  - id: topdown_arms
+    description: Set both wrists to Top-Down Ready Stance
+    binding:
+      action: press_key
+      key: v
+      duration: 0.1
+  - id: home_arms
+    description: Lift and return both arms to Origin Home pose
+    binding:
+      action: press_key
+      key: h
+      duration: 0.1
+  - id: step_tick
+    description: Advance 1 physics tick holding pose
+    binding:
+      action: press_key
+      key: x
+      duration: 0.1
+  - id: left_close
+    description: Close Left gripper (idempotent)
+    binding:
+      action: press_key
+      key: F1
+      duration: 0.1
+  - id: left_open
+    description: Open Left gripper (idempotent)
+    binding:
+      action: press_key
+      key: F2
+      duration: 0.1
+  - id: right_close
+    description: Close Right gripper (idempotent)
+    binding:
+      action: press_key
+      key: F3
+      duration: 0.1
+  - id: right_open
+    description: Open Right gripper (idempotent)
+    binding:
+      action: press_key
+      key: F4
+      duration: 0.1

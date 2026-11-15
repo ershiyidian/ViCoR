@@ -1,0 +1,79 @@
+game_rules: 'You are playing aqua-sort-puzzle.
+
+
+  ## Game Description
+
+  Sort colored liquids into tubes so each contains only one color. Pour between tubes
+  strategically to complete all levels.
+
+
+  ## Controls
+
+  - Arrow Left/Right: Navigate tubes
+
+  - Space: Select tube to pour
+
+  - Z: Undo last move
+
+  - Enter: Start game
+
+  - R: Restart'
+width: 800
+height: 600
+speed_multiplier: 1.0
+game_roles:
+- name: player
+  prompt:
+    role_section: 'You control the player in aqua-sort-puzzle.
+
+      Sort colored liquids into tubes so each contains only one color. Pour between
+      tubes strategically to complete all levels.'
+    computer_use_controls_section: 'ACTION SPACE (ONLY LEGAL ACTIONS):
+
+      - Wait: Do nothing briefly.
+
+      - ArrowLeft: Move cursor left
+
+      - ArrowRight: Move cursor right
+
+      - Space: Select / Pour tube
+
+      - z: Undo last move'
+  computer_use_controls:
+    allowed_keys:
+    - ArrowLeft
+    - ArrowRight
+    - Space
+    - z
+    allow_clicks: false
+    hold_duration: 0.18
+  semantic_controls:
+  - id: wait
+    description: Wait briefly.
+    binding:
+      action: wait
+      duration: 0.15
+  - id: press_arrowleft
+    description: Move cursor left
+    binding:
+      action: press_key
+      key: ArrowLeft
+      duration: 0.18
+  - id: press_arrowright
+    description: Move cursor right
+    binding:
+      action: press_key
+      key: ArrowRight
+      duration: 0.18
+  - id: press_space
+    description: Select / Pour tube
+    binding:
+      action: press_key
+      key: Space
+      duration: 0.18
+  - id: press_z
+    description: Undo last move
+    binding:
+      action: press_key
+      key: z
+      duration: 0.18

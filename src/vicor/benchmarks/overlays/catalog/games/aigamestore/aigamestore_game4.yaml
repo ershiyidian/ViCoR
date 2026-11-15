@@ -1,0 +1,70 @@
+game_rules: 'You are playing jetpack-joyride-clone.
+
+
+  ## Game Description
+
+  Fly through an endless lab with your bullet-powered jetpack. Dodge zappers, missiles,
+  and lasers while collecting coins.
+
+
+  ## Controls
+
+  - Space/Arrow Up: Activate Jetpack (Fly Up)
+
+  - ESC: Pause/Unpause
+
+  - Enter: Start Game
+
+  - R: Restart
+
+  - Z: Activate special ability'
+width: 800
+height: 600
+speed_multiplier: 1.0
+game_roles:
+- name: player
+  prompt:
+    role_section: 'You control the player in jetpack-joyride-clone.
+
+      Fly through an endless lab with your bullet-powered jetpack. Dodge zappers,
+      missiles, and lasers while collecting coins.'
+    computer_use_controls_section: 'ACTION SPACE (ONLY LEGAL ACTIONS):
+
+      - Wait: Do nothing briefly.
+
+      - Space: Activate Jetpack (Fly Up)
+
+      - ArrowUp: Fly Up
+
+      - z: Activate special ability'
+  computer_use_controls:
+    allowed_keys:
+    - Space
+    - ArrowUp
+    - z
+    allow_clicks: false
+    hold_duration: 0.18
+  semantic_controls:
+  - id: wait
+    description: Wait briefly.
+    binding:
+      action: wait
+      duration: 0.15
+  - id: press_space
+    description: Activate Jetpack (Fly Up)
+    binding:
+      action: press_key
+      key: Space
+      duration: 0.18
+  - id: press_arrowup
+    description: Fly Up
+    binding:
+      action: press_key
+      key: ArrowUp
+      duration: 0.18
+  - id: press_z
+    description: Activate special ability
+    binding:
+      action: press_key
+      key: z
+      duration: 0.18

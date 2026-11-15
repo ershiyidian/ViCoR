@@ -1,0 +1,12 @@
+task_prompt: Complete the manipulation objective shown in the `GOAL:` banner at the
+  top of the screen using the Virtual Gamepad controls (short taps for fine alignment,
+  long presses for larger moves, and `h` to return arms to home when finished).
+evaluator_config:
+  objective:
+    reach:
+      game_state.score: 1.0
+  metrics_fields:
+  - game_state.score
+  - game_state.max_process_score
+  - game_state.gamepad_steps
+  - game_state.sim_steps

@@ -1,0 +1,70 @@
+game_rules: 'You are playing cheese-chase-mouse-escape.
+
+
+  ## Game Description
+
+  Collect all cheese to unlock the exit. Avoid patrolling cats and complete all levels
+  to win.
+
+
+  ## Controls
+
+  - Arrow Left/Right: Move
+
+  - Arrow Up: Jump
+
+  - Enter: Start game
+
+  - Esc: Pause
+
+  - R: Restart'
+width: 800
+height: 600
+speed_multiplier: 1.0
+game_roles:
+- name: player
+  prompt:
+    role_section: 'You control the player in cheese-chase-mouse-escape.
+
+      Collect all cheese to unlock the exit. Avoid patrolling cats and complete all
+      levels to win.'
+    computer_use_controls_section: 'ACTION SPACE (ONLY LEGAL ACTIONS):
+
+      - Wait: Do nothing briefly.
+
+      - ArrowLeft: Move left
+
+      - ArrowRight: Move right
+
+      - ArrowUp: Jump'
+  computer_use_controls:
+    allowed_keys:
+    - ArrowLeft
+    - ArrowRight
+    - ArrowUp
+    allow_clicks: false
+    hold_duration: 0.18
+  semantic_controls:
+  - id: wait
+    description: Wait briefly.
+    binding:
+      action: wait
+      duration: 0.15
+  - id: press_arrowleft
+    description: Move left
+    binding:
+      action: press_key
+      key: ArrowLeft
+      duration: 0.18
+  - id: press_arrowright
+    description: Move right
+    binding:
+      action: press_key
+      key: ArrowRight
+      duration: 0.18
+  - id: press_arrowup
+    description: Jump
+    binding:
+      action: press_key
+      key: ArrowUp
+      duration: 0.18

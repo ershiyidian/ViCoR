@@ -1,0 +1,90 @@
+player_mode: cooperative
+game_rules: 'You are playing ''Fireboy and Watergirl in The Forest Temple''.
+
+  Some puzzles require both characters to cooperate to solve.
+
+
+  ## Game Objective
+
+  - Both characters must reach their respective exit doors to complete the level.
+
+  - Collect all diamonds for a higher score.
+
+
+  ## Game Rules
+
+  - Green toxic liquid: Kills BOTH characters
+
+  - Red lava pools: Kills Watergirl only
+
+  - Blue water pools: Kills Fireboy only
+
+  - Buttons and levers control platforms and doors
+
+  - Boxes can be pushed to reach higher platforms
+
+  '
+game_roles:
+- name: fireboy_and_watergirl
+  prompt:
+    role_section: 'You control BOTH characters in Fireboy and Watergirl:
+
+      - Watergirl (blue girl, W/A/D): Collect blue diamonds, reach blue exit door,
+      NEVER touch red lava.
+
+      - Fireboy (red boy, ArrowUp/ArrowLeft/ArrowRight): Collect red diamonds, reach
+      red exit door, NEVER touch blue water.
+
+      - Green toxic liquid kills BOTH characters.
+
+      Coordinate both characters to press buttons/levers and reach both exit doors.'
+    computer_use_controls_section: 'ACTION SPACE (ONLY LEGAL ACTIONS):
+
+      - Watergirl: w (Jump), a (Left), d (Right), w+a (Jump left), w+d (Jump right)
+
+      - Fireboy: ArrowUp (Jump), ArrowLeft (Left), ArrowRight (Right), ArrowUp+ArrowLeft
+      (Jump left), ArrowUp+ArrowRight (Jump right)'
+  computer_use_controls:
+    allowed_keys:
+    - w
+    - a
+    - d
+    - ArrowUp
+    - ArrowLeft
+    - ArrowRight
+    allow_clicks: false
+    hold_duration: 0.1
+  semantic_controls:
+  - id: wait
+    description: Stay still briefly.
+    binding:
+      action: wait
+      duration: 0.1
+  - id: move_left
+    description: Walk left (hold).
+    binding:
+      action: press_key
+      key: a
+      duration: 0.1
+  - id: move_right
+    description: Walk right (hold).
+    binding:
+      action: press_key
+      key: d
+      duration: 0.1
+  - id: jump_left
+    description: Jump diagonally left (jump + left).
+    binding:
+      action: press_keys
+      keys:
+      - w
+      - a
+      duration: 0.1
+  - id: jump_right
+    description: Jump diagonally right (jump + right).
+    binding:
+      action: press_keys
+      keys:
+      - w
+      - d
+      duration: 0.1

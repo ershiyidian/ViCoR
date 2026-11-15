@@ -1,0 +1,10 @@
+task_prompt: 'Play fling-feathers-blitz and achieve the highest score possible (human
+  median benchmark: 7155.0).'
+evaluator_config:
+  objective:
+    reach:
+      game_state.score: 7155.0
+  metrics_fields:
+  - game_state.score
+  - game_state.raw_score
+  - game_state.level

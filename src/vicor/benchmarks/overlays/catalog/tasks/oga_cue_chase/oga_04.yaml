@@ -1,0 +1,11 @@
+task_prompt: Complete all 10 NPC exchange tasks before the countdown ends. Read the
+  task text in the top-left corner, use the NPC hint to find the right NPC, and use
+  the interaction button when the [Interaction] prompt is visible.
+evaluator_config:
+  objective:
+    reach:
+      game_state.score: 1.0
+  metrics_fields:
+  - game_state.score
+  - game_state.max_score_seen
+  - game_state.survival_time

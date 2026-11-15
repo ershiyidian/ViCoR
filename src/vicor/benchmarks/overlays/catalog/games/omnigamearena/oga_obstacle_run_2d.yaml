@@ -1,0 +1,73 @@
+game_rules: 'You are playing a 2D side-view obstacle course. You control a humanoid
+  character running across floating platforms separated by gaps. The goal is to reach
+  the finish line.
+
+
+  ## What you see on screen
+
+  - The camera shows the course from the side.
+
+  - Solid surfaces are platforms; gaps below are dangerous.
+
+  - A 3-minute countdown timer is shown on screen.
+
+
+  ## Rules
+
+  - Move right across the platforms and jump over gaps.
+
+  - Reach the finish before the countdown ends; falling into a gap fails the episode.
+
+
+  ## Task Objective
+
+  Run to the right, avoid obstacles and gaps, and reach the finish line safely.'
+width: 640
+height: 360
+speed_multiplier: 1.0
+game_roles:
+- name: player
+  prompt:
+    role_section: 'You control the player character.
+
+      Run to the right, avoid obstacles and gaps, and reach the finish line safely.'
+    computer_use_controls_section: 'ACTION SPACE (ONLY LEGAL ACTIONS):
+
+      - Wait: Pause briefly to observe.
+
+      - d: Move right
+
+      - a: Move left
+
+      - Space: Jump'
+  computer_use_controls:
+    allowed_keys:
+    - d
+    - a
+    - Space
+    allow_clicks: false
+    hold_duration: 0.25
+  semantic_controls:
+  - id: wait
+    description: Wait briefly.
+    binding:
+      action: wait
+      duration: 0.15
+  - id: press_d
+    description: Move right
+    binding:
+      action: press_key
+      key: d
+      duration: 0.25
+  - id: press_a
+    description: Move left
+    binding:
+      action: press_key
+      key: a
+      duration: 0.25
+  - id: press_space
+    description: Jump
+    binding:
+      action: press_key
+      key: Space
+      duration: 0.25
