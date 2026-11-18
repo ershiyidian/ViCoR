@@ -6,7 +6,7 @@
 
 <sub>\*Corresponding author</sub>
 
-[![Preprint](https://img.shields.io/badge/Paper-Preprint_Coming_Soon-b31b1b.svg)](#citation)
+[![arXiv](https://img.shields.io/badge/arXiv-2611.18723-b31b1b.svg)](https://arxiv.org/abs/2611.18723)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB.svg)](pyproject.toml)
 
@@ -157,10 +157,13 @@ ViCoR/
 
 ```bibtex
 @article{zhou2026vicor,
-  title   = {Acting by Intent, Reacting by Sight: Visual Conditioned Reflexes for Real-Time VLM Agents},
-  author  = {Zhou, Qiancheng and Zhang, Wenhua},
-  year    = {2026},
-  note    = {Preprint}
+  title         = {Acting by Intent, Reacting by Sight: Visual Conditioned Reflexes for Real-Time VLM Agents},
+  author        = {Zhou, Qiancheng and Zhang, Wenhua},
+  journal       = {arXiv preprint arXiv:2611.18723},
+  year          = {2026},
+  eprint        = {2611.18723},
+  archivePrefix = {arXiv},
+  url           = {https://arxiv.org/abs/2611.18723}
 }
 ```
 
