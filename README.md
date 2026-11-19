@@ -145,7 +145,7 @@ ViCoR/
     │   ├── streams.py               # Continuous frame capture ring buffer & event ledger
     │   └── prompts/reflex_rules.md  # Main-VLM reflex authoring contract
     ├── backends/                    # Async OpenAI-compatible & Responses API model clients
-    ├── vista_runtime/               # Vendored MIT visual-memory & note-keeping contracts
+    ├── vista_runtime/               # Visual-memory & structured note-keeping runtime
     └── benchmarks/
         ├── seeded_env.py            # Deterministic episode seeding wrapper
         ├── overlay_installer.py     # Multi-benchmark GameWorld adapter installer
